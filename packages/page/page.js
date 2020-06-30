@@ -1,11 +1,6 @@
-const QNAME = ''
-
 const props = {
   pageTotal: {
     required: true
-  },
-  pageSize: {
-    default: 10
   },
   pageSizes: {
     default: function () {
@@ -16,7 +11,7 @@ const props = {
     default: 'total,sizes, prev, pager, next, ->, slot'
   },
   uid: {
-    default: 'P1'
+    default: 'P'
   }
 }
 
@@ -25,10 +20,10 @@ export default {
   render: function (h) {
     return (
       <el-pagination
-        uid={uid}
+        uid={this.uid}
         layout={this.layout}
         page-sizes={this.pageSizes}
-        page-size={this.$route.query.pageSize * 1 || this.pageSize}
+        page-size={this.pageSize}
         total={this.pageTotal}
         current-page={this.currentPage}
         {...{
@@ -41,26 +36,44 @@ export default {
     )
   },
   props,
+  data () {
+    return {
+      pageData: { pageSize: 10, currentPage: 1 }
+    }
+  },
   computed: {
     currentPage () {
       let p = this.$getQuery(this.$route, this.uid)
       return p.currentPage * 1 || 1
+    },
+    pageSize () {
+      let p = this.$getQuery(this.$route, this.uid)
+      return p.pageSize * 1 || 1
     }
   },
   methods: {
     handleSizeChange (val) {
-      this.handleChange({ pageSize: val })
+      this.pageData.pageSize = val
+      this.handleChange()
     },
     handleCurrentChange (val) {
-      this.handleChange({ currentPage: val })
+      this.pageData.currentPage = val
+      this.handleChange()
     },
-    handleChange (pageData) {
+    handleChange () {
+      let $rr = this.$router
       let $r = this.$route
       let p = this.$getQuery(this.$route, this.uid)
 
-      this.$setQuery($r, pageData, this.uid).then(() => {
+      this.$setQuery($rr, $r, { ...p, ...this.pageData }, this.uid).then(() => {
         this.$emit('update')
       })
     }
+  },
+  created () {
+    let p = this.$getQuery(this.$route, this.uid)
+
+    this.pageData.currentPage = p.currentPage || this.pageData.currentPage
+    this.pageData.pageSize = p.pageSize || this.pageData.pageSize
   }
 }

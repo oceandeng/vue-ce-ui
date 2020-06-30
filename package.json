@@ -1,6 +1,6 @@
 {
   "name": "vue-ce-ui",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "private": false,
   "main": "dist/CEUI.common.js",
   "scripts": {
@@ -57,5 +57,23 @@
   "browserslist": [
     "> 1%",
     "last 2 versions"
-  ]
+  ],
+  "description": "## Project setup ``` npm install ```",
+  "directories": {
+    "example": "examples"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/oceandeng/vue-ce-ui.git"
+  },
+  "keywords": [
+    "vue",
+    "ui"
+  ],
+  "author": "ocean",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/oceandeng/vue-ce-ui/issues"
+  },
+  "homepage": "https://github.com/oceandeng/vue-ce-ui#readme"
 }

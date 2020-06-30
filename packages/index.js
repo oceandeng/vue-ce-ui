@@ -1,30 +1,41 @@
-// 导入单个组件
-import Table from './table'
-import Pagination from './pagination'
+import Form from './form/form'
+import SearchForm from './form/search-form'
+import FromItem from './form/form-item'
+import Input from './form-item/input'
+import Select from './form-item/select'
+import Radio from './form-item/radio'
+import Checkbox from './form-item/checkbox'
+import DatePicker from './form-item/date-picker'
+import Upload from './form-item/upload'
+import Cascader from './form-item/cascader'
+import Button from './form-item/button'
+import TablePagination from './table/table-pagination'
+import Page from './page/page'
+import Progress from './progress'
 
-// 以数组的结构保存组件，便于遍历
 const components = [
-  Table,
-  Pagination
+  Form,
+  SearchForm,
+  FromItem,
+  Input,
+  Select,
+  Radio,
+  Checkbox,
+  DatePicker,
+  Upload,
+  Cascader,
+  Button,
+  TablePagination,
+  Page,
+  Progress
 ]
 
-// 定义install方法
-const install = function (Vue) {
-  if (install.installed) return
-  install.installed = true
-  // 遍历病注册全局组件
-  components.map(component => {
-    Vue.component(component.name, component)
-  })
+const ceui = {
+  install: function (Vue, options) {
+    components.map(item => {
+      Vue.component(item.name, item)
+    })
+  }
 }
 
-if (typeof window !== 'undefined' && window.Vue) {
-  install(window.Vue)
-}
-
-export default {
-  // 导出的对象必须具备一个install方法
-  install,
-  // 组件列表
-  ...components
-}
+export default ceui

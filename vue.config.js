@@ -5,36 +5,31 @@ function resolve (dir) {
 }
 
 module.exports = {
-
+  // 基本路径
+  publicPath: '/',
   pages: {
     index: {
       // page入口
-      entry: 'examples/main.js',
+      entry: 'examples/views/index/main.js',
       // 模板来源
-      templage: 'public/index.html',
+      template: 'public/index.html',
       // 输出文件名
       filename: 'index.html'
+    },
+    ui: {
+      entry: 'examples/views/ui/main.js',
+      template: 'public/ui.html',
+      filename: 'ui.html'
     }
   },
-
-  // configureWebpack: () => {
-  //   return {
-  //     entry: "./src/ce-ui/index.js",
-  //     output: {
-  //       path: path.resolve(__dirname, "./dist"),
-  //       filename: "CEUI.js",
-  //       library: "CEUI",
-  //       libraryTarget: 'umd',
-  //       umdNamedDefine: true
-  //     }
-  //   }
-  // },
   chainWebpack: config => {
     // 别名
     config.resolve.alias
-      .set('@components', resolve('src') + '/components')
-      .set('@ui', resolve('src') + '/ui')
       .set('~', resolve('/'))
+      .set('@examples', resolve('examples'))
+      .set('@packages', resolve('packages'))
+      .set('@src', resolve('src'))
+      .set('@views', resolve('examples') + '/views')
   },
   devServer: {
     port: '8081',

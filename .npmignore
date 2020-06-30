@@ -4,6 +4,7 @@ examples/
 packages/
 public/
 src/
+api/
 vue.config.js
 babel.config.js
 *.map
