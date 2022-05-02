@@ -7,6 +7,7 @@ function resolve (dir) {
 module.exports = {
   // 基本路径
   publicPath: '/',
+  outputDir: 'dist',
   pages: {
     index: {
       // page入口
@@ -22,6 +23,12 @@ module.exports = {
       filename: 'ui.html'
     }
   },
+//   configureWebpack: {
+//       entry: resolve('packages/index.js'),
+//       output: {
+//           filename: 'CEUI.common.js'
+//       }
+//   },
   chainWebpack: config => {
     // 别名
     config.resolve.alias
