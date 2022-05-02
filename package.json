@@ -4,9 +4,10 @@
   "private": false,
   "main": "lib/CEUI.common.js",
   "scripts": {
-    "serve": "vue-cli-service serve",
+    "serve": "vue-cli-service serve  ",
     "build": "vue-cli-service build",
     "build-bundle": "vue-cli-service build --target lib --dest lib --name CEUI ./packages/index.js",
+    "dist": "npm run build && npm run build-bundle",
     "lint": "vue-cli-service lint",
     "pub": "npm run build-bundle && npm publish"
   },
